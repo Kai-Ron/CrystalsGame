@@ -110,6 +110,7 @@ public class KineticCrystal : MonoBehaviour
                         Debug.Log(direction);
                     }
                 }
+                Debug.Log("Kinetic Crystal Glitch");
             }
         }
     }
@@ -124,7 +125,7 @@ public class KineticCrystal : MonoBehaviour
                 {
                     bool move = true;
 
-                    if(powered & collision.gameObject.GetComponent<Energy>().interactable)
+                    if(powered && collision.gameObject.GetComponent<Energy>().interactable && energy.source != collision.gameObject.GetComponent<Energy>())
                     {
                         move = false;
                     }
@@ -134,7 +135,7 @@ public class KineticCrystal : MonoBehaviour
                         //direction = collision.gameObject.energy.direction;
                         float xDir = transform.position.x - collision.transform.position.x;
                         float yDir = transform.position.y - collision.transform.position.y;
-                        float threshold = 0.5f;
+                        float threshold = 0.25f;
                         float speed = 1.0f;
 
                         if(xDir >= threshold)
@@ -168,6 +169,7 @@ public class KineticCrystal : MonoBehaviour
                         Debug.Log(direction);
                     }
                 }
+                Debug.Log("Kinetic Crystal Glitch");
             }
         }
     }
