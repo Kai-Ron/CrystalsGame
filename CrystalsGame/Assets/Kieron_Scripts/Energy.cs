@@ -12,6 +12,7 @@ public class Energy : MonoBehaviour
     public Energy source;
     public Light2D lightSource;
     public bool interactable;
+    public bool conductive;
     
     // Start is called before the first frame update
     void Start()
@@ -22,15 +23,15 @@ public class Energy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(source)
+        if(source && conductive)
         {
             power = source.power;
         }
-        else if(!source && power > 0.0f)
+        else if(source == false && power > 0.0f && conductive)
         {
             power -= 0.02f;
         }
-        else if(!source && power < 0.0f)
+        else if(source == false && power < 0.0f && conductive)
         {
             power = 0.0f;
         }
@@ -54,14 +55,39 @@ public class Energy : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    /*void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log(collision.gameObject.name);
+    }*/
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.gameObject.GetComponent<Energy>() && conductive)
+        {
+            if(source)
+            {
+                if(source.power <= 0.0f)
+                {
+                    source = null;
+                    //power = 0;
+                }
+                else if(power < collider.gameObject.GetComponent<Energy>().power && collider.gameObject.GetComponent<Energy>().source != gameObject.GetComponent<Energy>())
+                {
+                    source = collider.gameObject.GetComponent<Energy>();
+                    power = source.power;
+                }
+            }
+            else if(power < collider.gameObject.GetComponent<Energy>().power && collider.gameObject.GetComponent<Energy>().source != gameObject.GetComponent<Energy>())
+            {
+                source = collider.gameObject.GetComponent<Energy>();
+                power = source.power;
+            }
+        }
     }
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if(collider.gameObject.GetComponent<Energy>())
+        if(collider.gameObject.GetComponent<Energy>() && conductive)
         {
             if(source)
             {
@@ -86,7 +112,7 @@ public class Energy : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        if(collider.gameObject.GetComponent<Energy>())
+        if(collider.gameObject.GetComponent<Energy>() && conductive)
         {
             if(collider.gameObject.GetComponent<Energy>() == source)
             {
@@ -96,9 +122,35 @@ public class Energy : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.GetComponent<Energy>() && conductive)
+        {
+            if(source)
+            {
+                if(source.power <= 0.0f)
+                {
+                    source = null;
+                    //power = 0;
+                }
+                else if(power < collision.gameObject.GetComponent<Energy>().power && collision.gameObject.GetComponent<Energy>().source != gameObject.GetComponent<Energy>())
+                {
+                    source = collision.gameObject.GetComponent<Energy>();
+                    power = source.power;
+                }
+            }
+            else if(power < collision.gameObject.GetComponent<Energy>().power && collision.gameObject.GetComponent<Energy>().source != gameObject.GetComponent<Energy>())
+            {
+                source = collision.gameObject.GetComponent<Energy>();
+                power = source.power;
+            }
+            //Debug.Log(gameObject.name + " collisions working");
+        }
+    }
+
     void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<Energy>())
+        if(collision.gameObject.GetComponent<Energy>() && conductive)
         {
             if(source)
             {
@@ -124,7 +176,7 @@ public class Energy : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<Energy>())
+        if(collision.gameObject.GetComponent<Energy>() && conductive)
         {
             if(collision.gameObject.GetComponent<Energy>() == source)
             {
