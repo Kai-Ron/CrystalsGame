@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private float move;
     public float jump;
-    public GameObject target;
+    //public GameObject target;
     private bool flip = false;
 
     [SerializeField] private Transform grabPoint;
@@ -15,14 +15,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rayDistance;
 
     private GameObject grabbedObject;
-    private int layerIndex;
 
     // Start is called before the first frame update
     private Rigidbody2D rb;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        layerIndex = LayerMask.NameToLayer("Crystals");
     }
 
     // Update is called once per frame
@@ -47,16 +45,16 @@ public class PlayerController : MonoBehaviour
 
         RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right, rayDistance);
 
-        if(hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
+        if(hitInfo.collider != null && hitInfo.collider.gameObject.tag == "Object")
         {
-            if(Input.GetKey(KeyCode.C) && grabbedObject == null)
+            if(Input.GetKeyDown(KeyCode.C) && grabbedObject == null)
             {
                 grabbedObject = hitInfo.collider.gameObject;
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = true;
                 grabbedObject.transform.position = grabPoint.position;
                 grabbedObject.transform.SetParent(transform);
             }
-            else if(Input.GetKey(KeyCode.C))
+            else if(Input.GetKeyDown(KeyCode.C))
             {
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
                 grabbedObject.transform.SetParent(null);
