@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform rayPoint;
     [SerializeField] private float rayDistance;
 
+    public bool isGrounded;
+
     private GameObject grabbedObject;
 
     // Start is called before the first frame update
@@ -38,9 +40,13 @@ public class PlayerController : MonoBehaviour
             playerFlip();
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+            if(isGrounded == true)
+            {
+                rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+                isGrounded = false;
+            }
         }
 
         RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right, rayDistance);
@@ -62,6 +68,22 @@ public class PlayerController : MonoBehaviour
             }
         }
         Debug.DrawRay(rayPoint.position, transform.right * rayDistance);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag != "Player")
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag != "Player")
+        {
+            isGrounded = false;
+        }
     }
 
     void playerFlip()
