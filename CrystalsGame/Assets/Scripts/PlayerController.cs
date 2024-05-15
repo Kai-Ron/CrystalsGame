@@ -56,12 +56,25 @@ public class PlayerController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.C) && grabbedObject == null)
             {
                 grabbedObject = hitInfo.collider.gameObject;
+                
+                if(hitInfo.collider.gameObject.GetComponent<Energy>())
+                {
+                    grabbedObject.GetComponent<Energy>().grabbed = true;
+                    Debug.Log(grabbedObject);
+                }
+
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = true;
                 grabbedObject.transform.position = grabPoint.position;
                 grabbedObject.transform.SetParent(transform);
             }
             else if(Input.GetKeyDown(KeyCode.C))
             {
+                if(hitInfo.collider.gameObject.GetComponent<Energy>())
+                {
+                    grabbedObject.GetComponent<Energy>().grabbed = false;
+                    Debug.Log(grabbedObject);
+                }
+
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
                 grabbedObject.transform.SetParent(null);
                 grabbedObject = null;
@@ -76,6 +89,11 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
         }
+
+        if(collision.gameObject.GetComponent<KineticCrystal>())
+        {
+            transform.SetParent(collision.transform);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -83,6 +101,11 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag != "Player")
         {
             isGrounded = false;
+        }
+
+        if(collision.gameObject.GetComponent<KineticCrystal>())
+        {
+            transform.SetParent(null);
         }
     }
 

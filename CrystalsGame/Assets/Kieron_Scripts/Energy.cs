@@ -7,11 +7,11 @@ public class Energy : MonoBehaviour
 {
     public float power = 0.0f;
     public float intensity;
-    public float maxThreshold = 10.0f, minThreshold = 1.0f;
+    public float maxThreshold = 10.0f, minThreshold = 0.1f;
     public int multiplier = 10;
     public Energy source;
     public Light2D lightSource;
-    public bool interactable;
+    public bool interactable, grabbed = false;
     public bool conductive;
     
     // Start is called before the first frame update

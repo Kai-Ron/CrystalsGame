@@ -28,7 +28,7 @@ public class KineticCrystal : MonoBehaviour
     {
         power = energy.power;
         
-        if(power > 0)
+        if(power > 0 && energy.grabbed == false)
         {
             if(!powered)
             {
@@ -42,7 +42,7 @@ public class KineticCrystal : MonoBehaviour
             rb.MovePosition(rb.position + (direction * Time.fixedDeltaTime));
             //power -= 0.02f;
         }
-        else if(power <= 0)
+        else if(power <= 0 && energy.grabbed == false)
         {
             if(powered)
             {
@@ -110,7 +110,7 @@ public class KineticCrystal : MonoBehaviour
                         Debug.Log(direction);
                     }
                 }
-                Debug.Log("Kinetic Crystal Glitch");
+                //Debug.Log("Kinetic Crystal Glitch");
             }
         }
     }
@@ -169,7 +169,7 @@ public class KineticCrystal : MonoBehaviour
                         Debug.Log(direction);
                     }
                 }
-                Debug.Log("Kinetic Crystal Glitch");
+                //Debug.Log("Kinetic Crystal Glitch");
             }
         }
     }
