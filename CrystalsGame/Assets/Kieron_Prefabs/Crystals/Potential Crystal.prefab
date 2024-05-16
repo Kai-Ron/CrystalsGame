@@ -103,7 +103,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.25
+  m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_Intensity: 0.25
   m_LightVolumeIntensity: 1
@@ -234,11 +234,12 @@ MonoBehaviour:
   power: 0
   intensity: 0
   maxThreshold: 10
-  minThreshold: 0.25
-  multiplier: 10
+  minThreshold: 0
+  multiplier: 1
   source: {fileID: 0}
   lightSource: {fileID: 0}
   interactable: 1
+  grabbed: 0
   conductive: 0
 --- !u!114 &5098424570045961500
 MonoBehaviour:
@@ -256,3 +257,4 @@ MonoBehaviour:
   powered: 0
   energy: {fileID: 0}
   rb: {fileID: 0}
+  player: {fileID: 0}
