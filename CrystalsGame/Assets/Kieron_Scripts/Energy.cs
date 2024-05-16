@@ -42,6 +42,10 @@ public class Energy : MonoBehaviour
             {
                 intensity = maxThreshold;
             }
+            else if(power <= 0)
+            {
+                intensity = 0;
+            }
             else if((power/multiplier) < minThreshold)
             {
                 intensity = minThreshold;
