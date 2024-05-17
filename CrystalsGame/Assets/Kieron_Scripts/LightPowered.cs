@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class LightPowered : MonoBehaviour
 {
     public Energy source;
+    public Light2D light2D;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        light2D = gameObject.GetComponent<Light2D>();
     }
 
     // Update is called once per frame
@@ -21,6 +23,14 @@ public class LightPowered : MonoBehaviour
             {
                 source = null;
             }
+            else
+            {
+                light2D.intensity = 1.0f;
+            }
+        }
+        else
+        {
+            light2D.intensity = 0.0f;
         }
     }
 
@@ -43,6 +53,14 @@ public class LightPowered : MonoBehaviour
             {
                 collider.gameObject.GetComponent<Energy>().source = null;
                 source = null;
+            }
+        }
+        else if(!source && collider.gameObject.GetComponent<Energy>())
+        {
+            if(collider.gameObject.GetComponent<Energy>().interactable == false)
+            {
+                collider.gameObject.GetComponent<Energy>().source = null;
+                collider.gameObject.GetComponent<Energy>().power = 0.0f;
             }
         }
     }

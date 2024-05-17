@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4567973536170731166}
   - component: {fileID: 2446039629637134496}
   - component: {fileID: 5039309834662003757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Light Crystal
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensityEnabled: 1
   m_ShadowIntensity: 0.75
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75

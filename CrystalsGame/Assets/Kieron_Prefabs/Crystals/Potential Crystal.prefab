@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2356343229818562871}
   - component: {fileID: 1322518252571903525}
   - component: {fileID: 5098424570045961500}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Potential Crystal
   m_TagString: Object
   m_Icon: {fileID: 0}
