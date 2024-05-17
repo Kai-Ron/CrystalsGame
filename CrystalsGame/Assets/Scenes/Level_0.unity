@@ -1822,14 +1822,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 227498237117889928, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 227498237117889928, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b3cd1e965410b0c45b8a4ce75ca818d0, type: 3}
     - target: {fileID: 282351682518358596, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1910,49 +1902,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 939899404369808047, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688624435092461211, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688624435092461211, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b3cd1e965410b0c45b8a4ce75ca818d0, type: 3}
     - target: {fileID: 6461726495078702475, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 7426219128450170935, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7426219128450170935, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b3cd1e965410b0c45b8a4ce75ca818d0, type: 3}
-    - target: {fileID: 8858204701866409473, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858204701866409473, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b3cd1e965410b0c45b8a4ce75ca818d0, type: 3}
-    - target: {fileID: 8858204701866409473, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858204701866409473, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858204701866409473, guid: 16ad9d1fdfd4a9b42a840a2e3806a4dd, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
