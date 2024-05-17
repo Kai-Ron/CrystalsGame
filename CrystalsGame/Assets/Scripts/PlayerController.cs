@@ -45,11 +45,18 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("hInput", horizInput);
         animator.SetFloat("vInput", vertInput);
 
-        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) && (horizInput > 0) || (horizInput < 0))
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            animator.SetBool("Walking", true);
+            if(horizInput > 0.2f || horizInput < -0.2f)
+            {
+                animator.SetBool("Walking", true);
+            }
+            else
+            {
+                animator.SetBool("Walking", false);
+            }
         }
-        else if(Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) && horizInput == 0)
+        else if(horizInput < 0.2f && horizInput > -0.2f)
         {
             animator.SetBool("Walking", false);
         }
@@ -97,7 +104,6 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Holding", true);
                 if (hitInfo.collider.gameObject.GetComponent<Energy>())
                 {
-                    
                     grabbedObject.GetComponent<Energy>().grabbed = true;
                     Debug.Log(grabbedObject);
                 }
@@ -131,7 +137,6 @@ public class PlayerController : MonoBehaviour
             {
                 if(hitInfo.collider.gameObject.GetComponent<Energy>())
                 {
-                    
                     grabbedObject.GetComponent<Energy>().grabbed = false;
                     Debug.Log(grabbedObject);
                 }
