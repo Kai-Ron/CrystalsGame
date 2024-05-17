@@ -22,13 +22,13 @@ public class LightEnergy : MonoBehaviour
     {
         if(collider.gameObject.GetComponent<LightPowered>())
         {
-            //Physics2D.queriesStartInColliders = false;
+            Physics2D.queriesStartInColliders = false;
 
-            LayerMask mask = LayerMask.GetMask("TransparentFX");
+            //LayerMask mask = LayerMask.GetMask("TransparentFX");
 
             //Debug.DrawRay(transform.position, (collider.transform.position - transform.position), Color.red);
             
-            RaycastHit2D raycast = Physics2D.Raycast(transform.position, (collider.transform.position - transform.position), raycastDistance, mask);
+            RaycastHit2D raycast = Physics2D.Raycast(transform.position, (collider.transform.position - transform.position), raycastDistance/*, mask*/);
 
             if(raycast.collider == collider)
             {

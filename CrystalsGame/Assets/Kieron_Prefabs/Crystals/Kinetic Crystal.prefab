@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5042900876378423972}
   - component: {fileID: 1646827826016861201}
   - component: {fileID: 3299581292339633995}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Kinetic Crystal
   m_TagString: Object
   m_Icon: {fileID: 0}

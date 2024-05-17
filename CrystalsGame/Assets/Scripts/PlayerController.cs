@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isGrounded;
 
-    private GameObject grabbedObject;
+    [SerializeField] private GameObject grabbedObject;
 
     // Start is called before the first frame update
     private Rigidbody2D rb;
@@ -81,11 +81,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right, rayDistance);
-
-        if(hitInfo.collider != null && hitInfo.collider.gameObject.tag == "Object")
+        if(Input.GetKeyDown(KeyCode.C) && grabbedObject == null)
         {
-            if(Input.GetKeyDown(KeyCode.C) && grabbedObject == null)
+            Physics2D.queriesStartInColliders = true;
+            
+            LayerMask mask = LayerMask.GetMask("Crystals");
+
+            RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right, rayDistance, mask);
+
+            Debug.DrawRay(rayPoint.position, transform.right * rayDistance, Color.red);
+
+            if(hitInfo.collider != null && hitInfo.collider.gameObject.tag == "Object")
             {
                 grabbedObject = hitInfo.collider.gameObject;
                 animator.SetBool("Holding", true);
@@ -97,10 +103,31 @@ public class PlayerController : MonoBehaviour
                 }
 
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                grabbedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
                 grabbedObject.transform.position = grabPoint.position;
                 grabbedObject.transform.SetParent(transform);
+                Debug.Log("C Pick Up");
             }
-            else if(Input.GetKeyDown(KeyCode.C))
+            else if(hitInfo.collider == null)
+            {
+                Debug.Log("Collider Null");
+            }
+            else
+            {
+                Debug.Log(hitInfo.collider.gameObject);
+            }
+        }
+        else if(Input.GetKeyDown(KeyCode.C))
+        {
+            Physics2D.queriesStartInColliders = true;
+            
+            LayerMask mask = LayerMask.GetMask("Crystals");
+
+            RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right, rayDistance, mask);
+
+            Debug.DrawRay(rayPoint.position, transform.right * rayDistance, Color.red);
+
+            if(hitInfo.collider != null && hitInfo.collider.gameObject.tag == "Object")
             {
                 if(hitInfo.collider.gameObject.GetComponent<Energy>())
                 {
@@ -110,11 +137,21 @@ public class PlayerController : MonoBehaviour
                 }
                 animator.SetBool("Holding", false);
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
+                grabbedObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
                 grabbedObject.transform.SetParent(null);
                 grabbedObject = null;
+
+            Debug.Log("C Put Down");
+            }
+            else if(hitInfo.collider == null)
+            {
+                Debug.Log("Collider Null");
+            }
+            else
+            {
+                Debug.Log(hitInfo.collider.gameObject);
             }
         }
-        Debug.DrawRay(rayPoint.position, transform.right * rayDistance);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

@@ -35,6 +35,10 @@ public class Energy : MonoBehaviour
         {
             power = 0.0f;
         }
+        else if(!source && conductive && !interactable)
+        {
+            power = 0.0f;
+        }
 
         if(lightSource)
         {
@@ -73,6 +77,10 @@ public class Energy : MonoBehaviour
                 if(source.power <= 0.0f)
                 {
                     source = null;
+                    if(!interactable)
+                    {
+                        power = 0.0f;
+                    }
                     //power = 0;
                 }
                 else if(power < collider.gameObject.GetComponent<Energy>().power && collider.gameObject.GetComponent<Energy>().source != gameObject.GetComponent<Energy>())
@@ -98,7 +106,11 @@ public class Energy : MonoBehaviour
                 if(source.power <= 0.0f)
                 {
                     source = null;
-                    //power = 0;
+                    if(!interactable)
+                    {
+                        power = 0.0f;
+                    }
+                    //power = 0.0f;
                 }
                 else if(power < collider.gameObject.GetComponent<Energy>().power && collider.gameObject.GetComponent<Energy>().source != gameObject.GetComponent<Energy>())
                 {
@@ -121,6 +133,10 @@ public class Energy : MonoBehaviour
             if(collider.gameObject.GetComponent<Energy>() == source)
             {
                 source = null;
+                if(!interactable)
+                {
+                    power = 0.0f;
+                }
                 //power = 0.0f;
             }
         }
@@ -135,6 +151,10 @@ public class Energy : MonoBehaviour
                 if(source.power <= 0.0f)
                 {
                     source = null;
+                    if(!interactable)
+                    {
+                        power = 0.0f;
+                    }
                     //power = 0;
                 }
                 else if(power < collision.gameObject.GetComponent<Energy>().power && collision.gameObject.GetComponent<Energy>().source != gameObject.GetComponent<Energy>())
@@ -161,6 +181,10 @@ public class Energy : MonoBehaviour
                 if(source.power <= 0.0f)
                 {
                     source = null;
+                    if(!interactable)
+                    {
+                        power = 0.0f;
+                    }
                     //power = 0;
                 }
                 else if(power < collision.gameObject.GetComponent<Energy>().power && collision.gameObject.GetComponent<Energy>().source != gameObject.GetComponent<Energy>())
@@ -185,6 +209,10 @@ public class Energy : MonoBehaviour
             if(collision.gameObject.GetComponent<Energy>() == source)
             {
                 source = null;
+                if(!interactable)
+                {
+                    power = 0.0f;
+                }
                 //power = 0.0f;
             }
         }

@@ -24,7 +24,7 @@ public class PotentialCrystal : MonoBehaviour
         if(energy.grabbed)
         {
             rb = player.GetComponent<Rigidbody2D>();
-            Debug.Log(rb.gameObject);
+            //Debug.Log(rb.gameObject);
         }
         else
         {
