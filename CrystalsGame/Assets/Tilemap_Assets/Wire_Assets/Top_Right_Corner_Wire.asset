@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Top_Right_Corner_Wire
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: f253b86d57febdd44a0154e674016e89, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
   m_Transform:
     e00: 1
     e01: 0
