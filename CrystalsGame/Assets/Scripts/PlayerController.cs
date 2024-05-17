@@ -45,11 +45,11 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("hInput", horizInput);
         animator.SetFloat("vInput", vertInput);
 
-        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) && (horizInput > 0) || (horizInput < 0))
         {
             animator.SetBool("Walking", true);
         }
-        else if(Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        else if(Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) && horizInput == 0)
         {
             animator.SetBool("Walking", false);
         }
