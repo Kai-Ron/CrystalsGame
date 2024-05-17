@@ -9,6 +9,11 @@ public class PlayerController : MonoBehaviour
     public float jump;
     //public GameObject target;
     private bool flip = false;
+    Animator animator;
+    private Vector2 inputValue;
+    float horizInput;
+    float vertInput;
+    //bool isWalking;
 
     [SerializeField] private Transform grabPoint;
     [SerializeField] private Transform rayPoint;
@@ -25,13 +30,40 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         move = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
+        horizInput = rb.velocity.x;
+        vertInput = rb.velocity.y;
+        animator.SetFloat("hInput", horizInput);
+        animator.SetFloat("vInput", vertInput);
 
-        if(move < 0 && flip != true)
+        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        {
+            animator.SetBool("Walking", true);
+        }
+        else if(Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        {
+            animator.SetBool("Walking", false);
+        }
+
+        if(isGrounded == true)
+        {
+            animator.SetBool("Grounded", true);
+        }
+        else if(isGrounded == false)
+        {
+            animator.SetBool("Grounded", false);
+        }
+
+        if (move < 0 && flip != true)
         {
             playerFlip();
         }
@@ -56,9 +88,10 @@ public class PlayerController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.C) && grabbedObject == null)
             {
                 grabbedObject = hitInfo.collider.gameObject;
-                
-                if(hitInfo.collider.gameObject.GetComponent<Energy>())
+                animator.SetBool("Holding", true);
+                if (hitInfo.collider.gameObject.GetComponent<Energy>())
                 {
+                    
                     grabbedObject.GetComponent<Energy>().grabbed = true;
                     Debug.Log(grabbedObject);
                 }
@@ -71,10 +104,11 @@ public class PlayerController : MonoBehaviour
             {
                 if(hitInfo.collider.gameObject.GetComponent<Energy>())
                 {
+                    
                     grabbedObject.GetComponent<Energy>().grabbed = false;
                     Debug.Log(grabbedObject);
                 }
-
+                animator.SetBool("Holding", false);
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
                 grabbedObject.transform.SetParent(null);
                 grabbedObject = null;
@@ -114,4 +148,6 @@ public class PlayerController : MonoBehaviour
         flip = !flip;
         transform.Rotate(0f, 180f, 0f);
     }
+
+
 }
